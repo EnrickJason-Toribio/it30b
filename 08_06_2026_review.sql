@@ -17,3 +17,7 @@ create table borrow (
     date_borrowed date not null,
     book_status varchar(255) not null
 );
+
+alter table borrow add constraint fk_student_id foreign key (student_id) references student(student_id);
+
+alter table borrow add constraint fk_book_id foreign key (book_id) references book(book_id);
