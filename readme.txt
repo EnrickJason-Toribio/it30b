@@ -10,3 +10,4 @@
 \! cls 
 mysqldump -u root -p --databases library_db > D:\dev\it30b\backups\date_db_name.sql
 source D:\dev\it30b\backups\date_db_name.sql
+mysqldump -u root -p --databases library_db > D:\dev\it30b\backups\"$(date + %Y%m%d_%H%M%S)_library_db.sql
