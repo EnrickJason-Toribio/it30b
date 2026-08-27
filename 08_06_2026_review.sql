@@ -18,7 +18,7 @@ create table borrow (
     student_id int not null,
     book_id int not null, 
     borrow_date timestamp not null default current_timestamp,
-    borrow_return_date timestamp not null default current_timestamp,
+    borrow_return_date timestamp null default null,
     constraint fk_borrow_student foreign key(student_id) references students(student_id),
     constraint fk_borrow_book foreign key(book_id) references books(book_id)
 );
