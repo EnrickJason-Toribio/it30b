@@ -245,7 +245,7 @@ $action = $_GET['action'] ?? '';
         
     }
 
-    // Create Borrow
+    // Borrow a book
     if($section==='borrow' && $action==='create'){
         if($_SERVER['REQUEST_METHOD']==='POST'){
             $studentId = (int) ($_POST['student_id'] ?? 00);
@@ -306,6 +306,24 @@ $action = $_GET['action'] ?? '';
             exit;
             }
         }
+    }
+
+    // Return a book
+    if($section==='borrow' && $action==='return'){
+        $borrowId = (int) ($_GET['id'] ?? 0);
+
+        $stmt = $pdo->prepare("
+            UPDATE borrow
+            SET borrow_return_date = CURRENT_TIMESTAMP
+            WHERE borrow_id = ?
+        ");
+
+        $stmt->execute([$borrowId]);
+
+        $_SESSION['alert'] = "Book returned successfully";
+
+        header("Location: index.php?section=borrow");
+        exit;
     }
 
 ?>
