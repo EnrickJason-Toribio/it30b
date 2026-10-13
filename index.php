@@ -217,10 +217,10 @@ $action = $_GET['action'] ?? '';
     }
 
 // BORROW
-    // Retrieve Borrowed Books
+    // Fetch Borrow Records
     if($section === 'borrow'){
-        // Retrieve Students
-        $stmt = $pdo->prepare("
+        // Fetch students for borrow form
+        $stmt = $pdo->query("
             SELECT 
                 student_id,
                 student_first_name,
@@ -231,8 +231,8 @@ $action = $_GET['action'] ?? '';
         
         $students = $stmt->fetchAll();
 
-        // Retrieve Books
-        $stmt = $pdo->prepare("
+        // Fetch books for borrow form
+        $stmt = $pdo->query("
             SELECT 
                 book_id,
                 book_title,
@@ -242,6 +242,7 @@ $action = $_GET['action'] ?? '';
         ");
         
         $books = $stmt->fetchAll();
+        
     }
 
     // Create Borrow
@@ -594,10 +595,48 @@ $action = $_GET['action'] ?? '';
         </p>
 
         <?php if($action==='create'): ?>
-            <h2>Create Borrow</h2>
+            <h2>Borrow a Book</h2>
+                
+            <form method="POST">
+                <label>Student</label>
+                <br>
+                <select name=student_id required>
+                    <option value="">
+                        -- Select Student --
+                    </option>
+                    <?php foreach($students as $student): ?>
+                        <option value="<?= $student['student_id'] ?> ">
+                            <?= htmlspecialchars($student['student_first_name'].' '.$student['student_last_name']) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
 
-            <form>
+                <br>
+                <br>
+                <label>Book</label>
+                <br>
+                <select name=book_id required>
+                    <option value="">
+                        -- Select Book --
+                    </option>
+                    <?php foreach($books as $book): ?>
+                        <option value="<?= $book['book_id'] ?> ">
+                            <?= htmlspecialchars($book['book_title'].' - '.$book['book_author']) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+                
+                <br>
+                <br>
+                <button type="submit">
+                    Borrow
+                </button>
+
+                <a href="index.php?section=borrow">
+                    Cancel
+                </a>
             </form>
+        
         <?php endif; ?>
     <?php endif; ?>
 </body>
