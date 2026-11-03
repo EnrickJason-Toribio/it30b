@@ -26,8 +26,8 @@ function navActive($section, $currentSection){
         display:flex;
         align-items:center;
         gap: 0.5rem;
-        color:#212121
-        margin:0;
+        color:#212121;
+        margin: 0;
     }
 
     .app-header h1 .material-icons{
@@ -106,22 +106,22 @@ function navActive($section, $currentSection){
         <a href="index.php?section=dashboard" class="<?= navActive('dashboard', $currentSection) ?>">
             <span class="material-icons">dashboard</span>
             Dashboard
-        <a/>
+        </a>
 
         <a href="index.php?section=students" class="<?= navActive('students', $currentSection) ?>">
             <span class="material-icons">people</span>
             Students
-        <a/>
+        </a>
 
         <a href="index.php?section=books" class="<?= navActive('books', $currentSection) ?>">
             <span class="material-icons">menu_book</span>
             Books
-        <a/>
+        </a>
 
         <a href="index.php?section=borrow" class="<?= navActive('borrow', $currentSection) ?>">
             <span class="material-icons">swap_horiz</span>
             Borrow
-        <a/>
+        </a>
     </nav>
 
-<header/>
+</header>
