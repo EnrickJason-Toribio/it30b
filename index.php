@@ -295,7 +295,7 @@ $action = $_GET['action'] ?? '';
                     LIMIT 1
                 ");
 
-                $stmt->execute([$borrowId]); 
+                $stmt->execute([$bookId]); 
 
                 $bookBorrow = $stmt->fetch();
 
@@ -320,7 +320,7 @@ $action = $_GET['action'] ?? '';
                 }   
             }
 
-            header("Location: index.php?section?borrow");
+            header("Location: index.php?section=borrow");
             exit;
             }
         }
@@ -364,8 +364,12 @@ $action = $_GET['action'] ?? '';
         <h1>Students</h1>
 
         <p>
-            <a href="index.php?section=students&action=create">
+            <a href="index.php?section=students&action=create" >
                 Add student
+            </a>
+            <br>
+            <a href="dashboard.php">
+                Dashboard
             </a>
         </p>
 
@@ -498,6 +502,10 @@ $action = $_GET['action'] ?? '';
             <a href="index.php?section=books&action=create">
                 Add books
             </a>
+            <br>
+            <a href="dashboard.php">
+                Dashboard
+            </a>
         </p>
 
         <?php if($action==='create'): ?>
@@ -627,6 +635,10 @@ $action = $_GET['action'] ?? '';
         <p>
             <a href="index.php?section=borrow&action=create">
             Borrow a Book
+            </a>
+            <br>
+            <a href="dashboard.php">
+                Dashboard
             </a>
         </p>
 
